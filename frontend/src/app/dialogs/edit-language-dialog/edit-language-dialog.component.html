@@ -1,0 +1,62 @@
+<div>
+
+
+
+  <div *ngIf="type == 'edit' || type == 'new'">
+
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>{{getTextByVariable('language', true)}}</mat-label>
+      <input matInput type="text" [(ngModel)]="selectedLanguage.language">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>{{getTextByVariable('isocode', true)}}</mat-label>
+      <input matInput type="text" [(ngModel)]="selectedLanguage.isocode">
+    </mat-form-field>
+
+    <br>
+
+    <mat-form-field class="example-form-field" appearance="fill">
+      <mat-label>{{getTextByVariable('endonym', true)}}</mat-label>
+      <input matInput type="text" [(ngModel)]="selectedLanguage.endonym">
+    </mat-form-field>
+
+    <br>
+
+    <mat-checkbox
+      class="example-margin"
+      [(ngModel)]="selectedLanguage.favourite">
+      {{getTextByVariable('favourite', true)}}?
+    </mat-checkbox>
+
+  </div>
+
+
+  <div *ngIf="type == 'delete'">
+
+    <p>{{getTextByVariable('delete_language1', true)}}</p>
+
+    <b>{{selectedLanguage.isocode}} - {{selectedLanguage.endonym}} - {{selectedLanguage.language}}</b>
+
+    <p>{{getTextByVariable('delete_language2', true)}}</p>
+
+
+
+
+  </div>
+
+  <mat-divider style="margin-top: 20px"></mat-divider>
+
+  <div style="margin-top: 20px">
+    <button (click)="cancel()" style="float: left; margin-right: auto" mat-raised-button><mat-icon>cancel</mat-icon>  {{getTextByVariable('cancel', true)}}</button>
+    <button *ngIf="type == 'delete'" (click)="deleteLanguage()" style="float: right; margin-right: auto" mat-raised-button color="warn"><mat-icon>delete_forever</mat-icon>  {{getTextByVariable('delete', true)}}</button>
+    <button style="margin-left: 40px" *ngIf="type != 'delete'" (click)="saveLanguage()" mat-raised-button color="primary"><mat-icon>save</mat-icon>  {{getTextByVariable('save', false)}}</button>
+  </div>
+
+
+</div>
+
+
+

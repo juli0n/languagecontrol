@@ -1,0 +1,97 @@
+
+<div style="display: flex;">
+
+  <div style="width: 45%; padding: 15px">
+
+    <div style="display: flex">
+
+      <div style="width: 100%">
+        <mat-form-field class="example-full-width" appearance="fill" style="width: 90%">
+          <mat-label> {{getTextByVariable('search', false)}}</mat-label>
+          <input matInput [(ngModel)]="searchTerm" (keyup)="filterTerms()">
+        </mat-form-field>
+      </div>
+      <div>
+
+        <button mat-raised-button (click)="newTerm()" color="primary"><mat-icon>add</mat-icon>  {{getTextByVariable('new_term', false)}}</button>
+
+      </div>
+
+
+
+    </div>
+
+
+
+    <mat-chip-list aria-label="Fish selection">
+
+        <mat-chip (click)="selectTerm(item)" *ngFor="let item of filteredTerms">{{item.defaultterm}}</mat-chip>
+
+    </mat-chip-list>
+
+
+    <div *ngIf="filteredTerms.length == 0">
+      {{getTextByVariable('no_result_with_filter', true)}}: <i>{{searchTerm}}</i>
+    </div>
+
+  </div>
+
+  <div style="width: 55%; padding: 15px">
+
+    <div *ngIf="selectedTerm.uuid != ''">
+
+      <div> <h2> {{getTextByVariable('term', false)}}: {{selectedTerm.defaultterm}}</h2></div>
+
+
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{getTextByVariable('list_of_languages', false)}}
+            </mat-panel-title>
+            <mat-panel-description>
+
+              {{selectedTerm.languages.length}} {{getTextByVariable('language_variants', false)}}
+
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div *ngFor="let lang of selectedTerm.languages" style="margin-top: 10px">
+            <b> {{lang.language.language}} </b> - {{lang.termtext}}
+          </div>
+
+          <div *ngIf="selectedTerm.languages.length == 0" >
+            {{getTextByVariable('no_other_language', false)}}
+          </div>
+
+
+
+        </mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{getTextByVariable('list_of_applications', false)}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <div *ngFor="let applications of allApplications" style="margin-top: 10px">
+            <b (click)="openApplication(applications)"> {{applications.applicationname}} </b>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <button (click)="deleteTerm()" style="float: left; margin-right: auto; margin-top: 20px" mat-raised-button color="warn"><mat-icon>delete_forever</mat-icon>  {{getTextByVariable('delete_term', false)}}</button>
+
+      <button mat-raised-button style="margin-top: 20px; float: right" (click)="editTerm()" color="primary"><mat-icon>edit</mat-icon>  {{getTextByVariable('edit_term', false)}}</button>
+
+
+    </div>
+
+
+
+    </div>
+
+
+
+</div>

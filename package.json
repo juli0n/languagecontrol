@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "express-list-endpoints": "^6.0.0",
+    "sequelize": "^6.16.3",
+    "sqlite3": "^5.0.2"
+  }
+}

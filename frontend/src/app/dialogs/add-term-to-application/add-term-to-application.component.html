@@ -1,0 +1,32 @@
+<mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
+  <mat-label> {{getTextByVariable('term_variable', false)}}</mat-label>
+  <input matInput [(ngModel)]="termVariable">
+</mat-form-field>
+
+
+
+<h3><b>{{getTextByVariable('default', false)}}</b>&nbsp; - &nbsp; {{selectedTerm.defaultterm}}</h3>
+
+
+<mat-divider></mat-divider>
+
+
+<div *ngFor="let lang of selectedTerm.languages" style="margin-top: 10px">
+  <div style="display: flex">
+
+    <b>{{lang.language.endonym}}</b>&nbsp; -
+
+    {{lang.termtext}}
+
+
+  </div>
+</div>
+
+
+<div style="display: flex; width: 100%; margin-top: 20px">
+
+  <button (click)="saveApplicationTerm()" style="float: right; margin-left: auto" mat-raised-button color="accent"> {{getTextByVariable('add_term', false)}}</button>
+
+
+</div>
+

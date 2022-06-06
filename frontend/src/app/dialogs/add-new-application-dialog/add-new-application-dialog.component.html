@@ -1,0 +1,11 @@
+<mat-form-field class="example-full-width" appearance="fill" style="width: 100%">
+  <mat-label> {{getTextByVariable('applicationname', false)}}</mat-label>
+  <input matInput [(ngModel)]="newApplicationName">
+</mat-form-field>
+
+<div style="display: flex; width: 100%; margin-top: 20px">
+
+  <button (click)="saveApplication()" style="float: right; margin-left: auto" mat-raised-button color="accent"><mat-icon>save</mat-icon>  {{getTextByVariable('save_application', false)}}</button>
+
+
+</div>

@@ -1,0 +1,95 @@
+<div style="display: flex; height: 100%">
+
+  <div style="width: 40%; padding: 20px">
+    <div style="display: flex">
+      <h2>{{getTextByVariable('list_of_applications', true)}}:</h2>
+    </div>
+    <button mat-raised-button color="primary" (click)="addNewApplication()">
+      <mat-icon>add</mat-icon>
+      {{getTextByVariable('add_new_application', false)}}
+    </button>
+    <div style="margin-top: 20px">
+      <mat-chip-list aria-label="Fish selection" style="margin-top: 20px">
+
+        <mat-chip (click)="selectApplication(item)"
+                  *ngFor="let item of allApplications">{{item.applicationname}}</mat-chip>
+
+      </mat-chip-list>
+    </div>
+
+  </div>
+
+  <div style="width: 60%; padding: 20px">
+
+    <div *ngIf="selectedApplication.uuid != ''" >
+
+
+      <mat-card >
+        <mat-card-title>{{selectedApplication.applicationname}}</mat-card-title>
+        <mat-card-subtitle>{{selectedApplication.usedterms.length}} {{getTextByVariable('active_terms', false)}} - {{selectedApplication.activelanguages.length}} {{getTextByVariable('active_languages', false)}}</mat-card-subtitle>
+
+        <!-- liste aller sprachen -->
+
+
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{getTextByVariable('active_languages', true)}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+
+            <mat-checkbox [checked]="checkActiveLanguage(item.uuid)" (change)="toggleLanguage(item.uuid)" *ngFor="let item of languages" class="example-margin" style="margin-left: 20px" >{{item.language}}</mat-checkbox>
+
+
+
+
+
+          </mat-expansion-panel>
+
+
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{getTextByVariable('active_terms', true)}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <button mat-raised-button color="primary" (click)="editTermusage()">
+              <mat-icon>edit</mat-icon>
+              {{getTextByVariable('edit_term', true)}}
+            </button>
+
+            <div style="margin-top: 20px">
+
+              <mat-chip-list aria-label="Fish selection">
+
+                <mat-chip *ngFor="let item of selectedApplication.usedterms">{{item.textvariable}}
+                  - {{item.term.defaultterm}}</mat-chip>
+
+              </mat-chip-list>
+
+            </div>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+
+        <button mat-raised-button color="warn" style="margin-top: 20px" (click)="deleteApplication()">
+          <mat-icon>delete</mat-icon>
+          {{getTextByVariable('delete_application', false)}}
+        </button>
+
+
+
+      </mat-card>
+
+
+    </div>
+
+  </div>
+
+
+</div>

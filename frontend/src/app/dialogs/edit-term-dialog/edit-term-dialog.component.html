@@ -1,0 +1,52 @@
+
+<h2 *ngIf="type == 'edit'">{{selectedTerm.defaultterm}}</h2>
+
+<mat-form-field *ngIf="type == 'new'" class="example-full-width" appearance="fill" style="width: 100%">
+  <mat-label>{{getTextByVariable('default_term', false)}}</mat-label>
+  <textarea rows="7" matInput placeholder="{{getTextByVariable('default_term', false)}}" [(ngModel)]="selectedTerm.defaultterm"></textarea>
+</mat-form-field>
+
+<div [ngStyle]="{'height':type == 'new' ? '72%' : '86%' }" style="overflow: auto">
+
+
+  <div *ngFor="let lang of selectedTerm.languages">
+    <div style="display: flex">
+
+
+        <button style="margin-right: 10px" (click)="deleteTermlanguage(lang)" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+          <mat-icon>delete_forever</mat-icon>
+        </button>
+
+        <mat-form-field appearance="fill">
+          <mat-label> {{getTextByVariable('term_language', false)}}</mat-label>
+          <mat-select [(ngModel)]="lang.languageID" [(value)]="lang.languageID">
+            <mat-option *ngFor="let option of languages" [value]="option.uuid" >
+              {{option.language}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+      <mat-form-field class="example-full-width" appearance="fill" style="margin-left: 20px; width: 100%">
+        <mat-label>{{getTextByVariable('text', false)}}</mat-label>
+        <textarea rows="7" matInput placeholder="Text" [(ngModel)]="lang.termtext"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+
+
+
+</div>
+
+<mat-divider></mat-divider>
+
+
+<div style="display: flex; width: 100%; margin-top: 20px">
+
+  <button *ngIf="type != 'new'" (click)="deleteTerm()" style="float: left; margin-right: auto" mat-raised-button color="warn"><mat-icon>delete_forever</mat-icon>  {{getTextByVariable('delete_term', false)}}</button>
+  <button (click)="addNewLanguage()" mat-raised-button><mat-icon>playlist_add</mat-icon>  {{getTextByVariable('new_language', false)}}</button>
+  <button (click)="saveTerm()" style="float: right; margin-left: auto" mat-raised-button color="accent"><mat-icon>save</mat-icon> {{getTextByVariable('save_term', false)}}</button>
+
+
+</div>
+

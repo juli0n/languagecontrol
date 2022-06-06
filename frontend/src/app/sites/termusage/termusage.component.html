@@ -1,0 +1,110 @@
+<div style="display: flex">
+
+  <div style="width: 100%; padding: 20px">
+
+    <div *ngIf="selectedApplication.uuid == ''">
+
+      <h2> {{getTextByVariable('list_of_applications', false)}}:</h2>
+      <mat-chip-list aria-label="Fish selection">
+
+        <mat-chip (click)="selectApplication(item)"
+                  *ngFor="let item of allApplications">{{item.applicationname}}</mat-chip>
+
+      </mat-chip-list>
+
+    </div>
+
+    <div *ngIf="selectedApplication.uuid != ''">
+
+      <div style="display: flex">
+        <button (click)="deselectApplication()" mat-icon-button
+                aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>keyboard_backspace</mat-icon>
+        </button>
+
+        <h2>{{selectedApplication.applicationname}}</h2>
+      </div>
+
+      <br>
+
+      <div style="display: flex">
+
+
+        <div style="width: 60%">
+
+          <h3> {{getTextByVariable('used_terms_variables', false)}}</h3>
+          <mat-form-field class="example-full-width" appearance="fill" style="width: 40%">
+            <mat-label>{{getTextByVariable('search', false)}}</mat-label>
+            <input matInput [(ngModel)]="usedtermFilter" (keyup)="filterUsedTerms()">
+          </mat-form-field>
+
+
+          <div
+            cdkDropList #active="cdkDropList"
+            [cdkDropListData]="filteredUsedTerms"
+            [cdkDropListConnectedTo]="[possible]"
+            (cdkDropListDropped)="drop($event, true)">
+
+            <mat-chip-list aria-label="Fish selection">
+
+              <mat-chip cdkDrag *ngFor="let item of filteredUsedTerms">{{item.textvariable}}
+                - {{item.term.defaultterm}}
+                <button *ngIf="item.term.defaultterm != 'no_terms_assigned'" (click)="showTermDetail(item.term)" matChipRemove>
+                  <mat-icon>info</mat-icon>
+                </button>
+              </mat-chip>
+
+            </mat-chip-list>
+
+            <div *ngIf="filteredUsedTerms.length == 0">
+              {{getTextByVariable('no_result_with_filter', true)}} : <i>{{usedtermFilter}}</i>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div style="width: 40%; margin-left: 20px">
+
+
+          <h3>{{getTextByVariable('available_terms_variables', false)}}</h3>
+          <mat-form-field class="example-full-width" appearance="fill" style="width: 40%">
+            <mat-label> {{getTextByVariable('search', false)}}</mat-label>
+            <input matInput [(ngModel)]="possibleTermFilter" (keyup)="filterUnusedterm()">
+          </mat-form-field>
+
+          <div cdkDropList
+               #possible="cdkDropList"
+               [cdkDropListData]="allPossibleTermsFiltered"
+               [cdkDropListConnectedTo]="[active]"
+               (cdkDropListDropped)="drop($event, false)">
+
+            <mat-chip-list aria-label="Fish selection">
+
+              <mat-chip cdkDrag *ngFor="let item of allPossibleTermsFiltered">{{item.defaultterm}}
+                <button *ngIf="item.defaultterm != 'all_terms_assigned'" (click)="showTermDetail(item)" matChipRemove>
+                  <mat-icon>info</mat-icon>
+                </button>
+              </mat-chip>
+
+            </mat-chip-list>
+
+            <div *ngIf="allPossibleTermsFiltered.length == 0">
+              {{getTextByVariable('no_result_with_filter', true)}} : <i>{{possibleTermFilter}}</i>
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</div>

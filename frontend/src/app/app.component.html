@@ -1,0 +1,89 @@
+
+<div style="height: 100%; margin: 0px; display: flex; flex-flow: column;">
+
+  <mat-toolbar color="primary" style="flex-shrink: 0">
+    <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Languagecontrol</span>
+    <span class="example-spacer"></span>
+
+
+    <button style="margin-left: 30px" mat-icon-button [matMenuTriggerFor]="themeMenu"
+            aria-label="Example icon button with a home icon">
+      <mat-icon>format_color_fill</mat-icon>
+    </button>
+
+    <button mat-icon-button style="margin-left: 30px" [matMenuTriggerFor]="languageMenu"
+            aria-label="Example icon button with a home icon">
+      <mat-icon>translate</mat-icon>
+    </button>
+
+
+    <mat-menu #languageMenu="matMenu" yPosition="above">
+      <div *ngFor="let option of languageOptions">
+        <button mat-menu-item (click)="changeSelectedLanguage(option['language']['isocode'])">{{option['language']['endonym']}}</button>
+      </div>
+    </mat-menu>
+
+
+
+    <mat-menu #themeMenu="matMenu" yPosition="above">
+
+      <button
+        *ngFor="let option of themeOptions"
+        mat-menu-item
+        (click)="changeTheme(option.value)">
+        <mat-icon
+          role="img"
+          svgicon="theme-example"
+          aria-hidden="true">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            width="100%"
+            height="100%"
+            viewBox="0 0 80 80"
+            fit=""
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false">
+            <defs>
+              <path
+                d="M77.87 0C79.05 0 80 .95 80 2.13v75.74c0 1.17-.95 2.13-2.13 2.13H2.13C.96 80 0 79.04 0 77.87V2.13C0 .95.96 0 2.13 0h75.74z"
+                id="a">
+              </path>
+              <path
+                d="M54 40c3.32 0 6 2.69 6 6 0 1.2 0-1.2 0 0 0 3.31-2.68 6-6 6H26c-3.31 0-6-2.69-6-6 0-1.2 0 1.2 0 0 0-3.31 2.69-6 6-6h28z"
+                id="b">
+              </path>
+              <path d="M0 0h80v17.24H0V0z" id="c"></path>
+            </defs>
+            <use xlink:href="#a" [attr.fill]="option.backgroundColor"></use>
+            <use xlink:href="#b" [attr.fill]="option.buttonColor"></use>
+            <use xlink:href="#c" [attr.fill]="option.headingColor"></use>
+          </svg>
+        </mat-icon>
+        <span>{{ option.label }}</span>
+      </button>
+
+    </mat-menu>
+
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="routeToPage('applications')">{{getTextByVariable('applications', false)}}</button>
+      <button mat-menu-item (click)="routeToPage('terms')">{{getTextByVariable('terms', false)}}</button>
+      <button mat-menu-item (click)="routeToPage('termusages')">{{getTextByVariable('termusages', false)}}</button>
+      <button mat-menu-item (click)="routeToPage('languages')">{{getTextByVariable('languages', false)}}</button>
+
+    </mat-menu>
+
+
+  </mat-toolbar>
+
+  <mat-card style="flex: 1 auto">
+    <router-outlet></router-outlet>
+  </mat-card>
+
+</div>
+
+
+

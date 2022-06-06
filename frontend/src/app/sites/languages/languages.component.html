@@ -1,0 +1,76 @@
+<div style="display: flex">
+  <h2>{{getTextByVariable('list_of_languages', true)}}:</h2>
+</div>
+
+<div style="display: flex">
+
+  <div style="width: 100%">
+    <mat-form-field class="example-full-width" appearance="fill" style="width: 30%">
+      <mat-label> {{getTextByVariable('search', false)}}</mat-label>
+      <input matInput [(ngModel)]="searchTerm" (keyup)="filterTerms($event)">
+    </mat-form-field>
+  </div>
+
+  <div>
+
+    <button mat-raised-button (click)="newLanguage()" color="primary">
+      <mat-icon>add</mat-icon>
+      {{getTextByVariable('new_language', false)}}</button>
+
+  </div>
+
+</div>
+
+
+<table style="width: 100%;" matSort mat-table [dataSource]="languagesDataSource"
+       class="mat-elevation-z8 dataTable">
+
+  <ng-container *ngFor="let col of displayedLanguagesColumns" matColumnDef="{{col}}">
+
+    <th *matHeaderCellDef mat-header-cell mat-sort-header>
+      {{getTextByVariable(col, true)}}
+    </th>
+    <div>
+      <td *matCellDef="let row" mat-cell>
+
+        <div *ngIf="col == 'favourite'">
+
+          <button *ngIf="row[col] == 'X'" color="yellow" mat-icon-button
+                  aria-label="Example icon button with a open in new tab icon" (click)="changeFavouriteState(row)">
+            <mat-icon>star</mat-icon>
+          </button>
+
+          <button *ngIf="row[col] != 'X'" mat-icon-button aria-label="Example icon button with a open in new tab icon"
+                  (click)="changeFavouriteState(row)">
+            <mat-icon>star_border</mat-icon>
+          </button>
+
+        </div>
+
+        <div *ngIf="col == ' '">
+
+          <button mat-icon-button aria-label="Example icon button with a open in new tab icon"
+                  (click)="editLanguage(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button color="red" mat-icon-button aria-label="Example icon button with a open in new tab icon"
+                  (click)="deleteLanguage(row)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+
+        </div>
+
+        <div *ngIf="col != 'favourite'">
+          {{row[col]}}
+        </div>
+
+      </td>
+    </div>
+
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedLanguagesColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedLanguagesColumns"></tr>
+
+</table>
