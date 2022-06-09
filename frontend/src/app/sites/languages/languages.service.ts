@@ -15,7 +15,7 @@ export class LanguagesService {
 
 
   public getAllLanguages(): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
     const param = new HttpParams();
 
     return this.httpClient.get<any>(API_URL + '/languages/getAllLanguages', {headers: headers}).pipe(
@@ -25,7 +25,7 @@ export class LanguagesService {
 
 
   public changeLanguage(language: Languages): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
 
     const head = {
       headers: headers

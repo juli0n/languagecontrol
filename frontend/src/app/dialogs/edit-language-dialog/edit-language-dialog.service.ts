@@ -19,7 +19,7 @@ export class EditLanguageDialogService {
   public deleteLanguage(languageid: string): Observable<any> {
 
     const httpOptions = {
-      headers: new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || ''),
+      headers: new HttpHeaders(),
       body: {
         languageid: languageid
       }
@@ -33,7 +33,7 @@ export class EditLanguageDialogService {
 
 
   public addNewLanguage(newLanguage: Languages): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
 
     const head = {
       headers: headers
@@ -51,7 +51,7 @@ export class EditLanguageDialogService {
 
 
   public updateLanguage(updatedLanguage: Languages): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
 
     const head = {
       headers: headers

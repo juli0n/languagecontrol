@@ -14,7 +14,7 @@ export class ApplicationsService {
 
 
   public getAllApplications(): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
     const param = new HttpParams();
 
     return this.httpClient.get<any>(API_URL + '/applications/getAllApplications', {headers: headers}).pipe(
@@ -23,7 +23,7 @@ export class ApplicationsService {
   }
 
   public getAllLanguages(): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
     const param = new HttpParams();
 
     return this.httpClient.get<any>(API_URL + '/languages/getAllLanguages', {headers: headers}).pipe(
@@ -32,7 +32,7 @@ export class ApplicationsService {
   }
 
   public addActiveLanguage(newActiveLanguage: Applicationlanguages): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
 
     const head = {
       headers: headers
@@ -50,7 +50,7 @@ export class ApplicationsService {
 
   public removeActiveLanguage(applicationid: string, languageid: string): Observable<any> {
     const httpOptions = {
-      headers: new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || ''),
+      headers: new HttpHeaders(),
       body: {
         applicationID: applicationid,
         languageID: languageid
@@ -66,7 +66,7 @@ export class ApplicationsService {
 
   public deleteApplication(applicationid: string): Observable<any> {
     const httpOptions = {
-      headers: new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || ''),
+      headers: new HttpHeaders(),
       body: {
         applicationid: applicationid
       }

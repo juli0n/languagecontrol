@@ -26,8 +26,7 @@ export class ThemesService {
   }
 
   public getAllLanguages(): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || '')
-      .append('applicationname', 'languagecontrol');
+    const headers = new HttpHeaders().set('applicationname', 'languagecontrol');
     const param = new HttpParams();
 
     return this.http.get<any>(API_URL + '/translation/getAllLanguages', {headers: headers}).pipe(

@@ -15,7 +15,7 @@ export class AddTermToApplicationService {
 
 
   public addNewTermusage(newActiveTerm: Termusages): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
 
     const head = {
       headers: headers

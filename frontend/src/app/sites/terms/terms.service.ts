@@ -13,7 +13,7 @@ export class TermsService {
 
 
   public getAllTerms(): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
     const param = new HttpParams();
 
     return this.httpClient.get<any>(API_URL + '/terms/getAllTerms', {headers: headers}).pipe(
@@ -22,7 +22,7 @@ export class TermsService {
   }
 
   public getAllLanguages(): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
     const param = new HttpParams();
 
     return this.httpClient.get<any>(API_URL + '/languages/getAllLanguages', {headers: headers}).pipe(
@@ -32,7 +32,7 @@ export class TermsService {
 
 
   public getAllApplicationsForTerm(termid: string): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem("jwt") || '').append('termid', termid);
+    const headers = new HttpHeaders().set('termid', termid);
     const param = new HttpParams();
 
     return this.httpClient.get<any>(API_URL + '/applications/getAllApplicationsForTerm', {headers: headers}).pipe(
@@ -44,7 +44,7 @@ export class TermsService {
 
   public deleteTerm(termid: string): Observable<any> {
     const httpOptions = {
-      headers: new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || ''),
+      headers: new HttpHeaders(),
       body: {
         termid: termid
       }

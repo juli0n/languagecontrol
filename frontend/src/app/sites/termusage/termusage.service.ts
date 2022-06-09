@@ -15,7 +15,7 @@ export class TermusageService {
 
 
   public getAllApplications(): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
     const param = new HttpParams();
 
     return this.httpClient.get<any>(API_URL + '/applications/getAllApplications', {headers: headers}).pipe(
@@ -25,7 +25,7 @@ export class TermusageService {
 
 
   public getAllNotActivatedLanguages(applicationID: string): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem("jwt") || '').append('applicationID', applicationID);
+    const headers = new HttpHeaders().set('applicationID', applicationID);
     const param = new HttpParams();
 
     return this.httpClient.get<any>(API_URL + '/terms/getAllNotActivatedLanguages', {headers: headers}).pipe(
@@ -35,7 +35,7 @@ export class TermusageService {
 
 
   public getAllTerms(): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
     const param = new HttpParams();
 
     return this.httpClient.get<any>(API_URL + '/terms/getAllTerms', {headers: headers}).pipe(
@@ -44,7 +44,7 @@ export class TermusageService {
   }
 
   public getAllLanguages(): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token', localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
     const param = new HttpParams();
 
     return this.httpClient.get<any>(API_URL + '/languages/getAllLanguages', {headers: headers}).pipe(
@@ -56,7 +56,7 @@ export class TermusageService {
   public deleteTermusage(termusageid: string): Observable<any> {
 
     const httpOptions = {
-      headers: new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || ''),
+      headers: new HttpHeaders(),
       body: {
         termusageid: termusageid
       }
@@ -69,7 +69,7 @@ export class TermusageService {
 
 
   public addNewTermusage(newTermusage: Termusages): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
 
     const head = {
       headers: headers

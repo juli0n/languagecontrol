@@ -15,7 +15,7 @@ export class EditTermDialogService {
 
 
   public addNewTerm(newTerm: Terms): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
 
     const head = {
       headers: headers
@@ -32,7 +32,7 @@ export class EditTermDialogService {
 
 
   public updateTerm(updatedTerm: Terms): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || '');
+    const headers = new HttpHeaders();
 
     const head = {
       headers: headers
@@ -51,7 +51,7 @@ export class EditTermDialogService {
 
   public deleteTermlanguage(termlanguageid: string): Observable<any> {
     const httpOptions = {
-      headers: new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || ''),
+      headers: new HttpHeaders(),
       body: {
         termlanguageid: termlanguageid
       }
@@ -67,7 +67,7 @@ export class EditTermDialogService {
   public deleteTerm(termid: string): Observable<any> {
 
     const httpOptions = {
-      headers: new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || ''),
+      headers: new HttpHeaders(),
       body: {
         termid: termid
       }

@@ -1,45 +1,46 @@
-# internationalizer
+# Languagecontrol
 
-<p>I have developed a managing application for diffrent languages within all of your applications.</p>
-
-<p>If the application dont fit to your database feel free to fork it and change it to fit your needs.</p>
+This is a Webapp to manage multiple languages for multiple application. You can easily create new terms in multiple languages and assign them to all of your applications. You can access the term in all languages through the declined variable.
 
 
+Build with Angular, NodeJS & PostgreSQL
+
+
+### Getting Started
+
+Install via Docker
+
+1. Create Docker Image 
+``` docker build -t languagecontrol . ```
+
+2. Run Image
+``` docker run -d -p 5434:9000 --name languagecontrol <containername>```
+
+
+### Development
+   ```bash
+$ git clone https://github.com/juli0n/languagecontrol.git
+$ cd languagecontrol
+$ npm install
+```
+
+
+### Upcoming Features
+- [ ] CSV Import
+- [ ] More default languages (spanish, french)
 
 
 
-<h2>Usage Instruction</h2>
 
-1. Create a application
-2. Create a term and add as many languages as you want
-3. Add a term to an application and give it a variable
-4. Call in your application the term with the given variable
+### License
+The MIT License (MIT)
 
+Copyright (c) 2021 [juli0n](https://www.google.de)
 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-<h2>How to implement the variable - term translation in your application?</h2>
-Just look how it's been done in the internationalizer application :D
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-
-
-<h2>Techstack</h2>
-
-The Techstack is divided in 3 Categorys.
-
-<h4>Frontend:</h4>
-<ul>
-  <li>Angular</li>
-</ul>
-
-<h4>Backend:</h4>
-<ul>
-  <li>NodeJS</li>
-</ul>
-
-<h4>Database:</h4>
-<ul>
-  <li>SQLite</li>
-</ul>
-
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 

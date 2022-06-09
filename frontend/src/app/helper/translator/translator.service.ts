@@ -36,8 +36,7 @@ export class TranslatorService {
 
 
   public getUebersetzungen(languageIso: string): Observable<any> {
-    const headers = new HttpHeaders().set('x-access-token',  localStorage.getItem("jwt") || '')
-      .append('languageIso', languageIso)
+    const headers = new HttpHeaders().set('languageIso', languageIso)
       .append('applicationname', 'languagecontrol');
     const param = new HttpParams();
 
