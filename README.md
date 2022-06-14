@@ -3,7 +3,7 @@
 This is a Webapp to manage multiple languages for multiple application. You can easily create new terms in multiple languages and assign them to all of your applications. You can access the term in all languages through the declined variable.
 
 
-Build with Angular, NodeJS & PostgreSQL
+Build with Angular, NodeJS & SQLite
 
 
 ### Getting Started
@@ -35,7 +35,7 @@ $ npm install
 ### License
 The MIT License (MIT)
 
-Copyright (c) 2021 [juli0n](https://www.google.de)
+Copyright (c) 2020 [juli0n](https://www.herold-consolidated.de/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
