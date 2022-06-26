@@ -1,8 +1,16 @@
 var express = require('express');
-var app = express();
+var app = express(),
+    bodyParser = require("body-parser"),
+    port = 3080;
 var cors = require('cors');
 
 app.use(cors());
+
+app.use(express.static(process.cwd()+"/frontend/"));
+
+app.get('/', (req,res) => {
+    res.sendFile(process.cwd()+"/frontend/index.html")
+});
 
 var LanguagesController = require('./Languages/LanguagesController');
 app.use('/languages', LanguagesController);
